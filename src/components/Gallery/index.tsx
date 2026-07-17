@@ -4,13 +4,22 @@ import galeriaTenisBrancoPreto from '@/assets/images/galeria-tenis-branco-e-pret
 import galeriaTenisCinza from '@/assets/images/galeria-tenis-cinza.jpg'
 import galeriaTenisColorido from '@/assets/images/galeria-tenis-colorido.jpg'
 import galeriaTenisRoxo from '@/assets/images/galeria-tenis-roxo.jpg'
+import { Overlay } from '../Overlay'
+import { Button } from '../Button'
 
 export const Gallery = () => {
     return (
         <section className="container mb-10">
             <div className="gallery-grid">
-                <div className="gallery-item gallery-item-highlight rounded-[20px] overflow-hidden">
+                <div className="relative gallery-item gallery-item-highlight rounded-[20px] overflow-hidden">
                     <img src={galeriaHomem} alt="Homem usando tênis SyntaxWear" className="w-full h-full object-cover" />
+                    <Overlay
+                        title="Kripton One"
+                        subtitle="Estilo urbano com atitude"
+                        className="inset-0 justify-center">
+                        <Button variant="secondary">Feminino</Button>
+                        <Button variant="secondary">Masculino</Button>
+                    </Overlay>
                 </div>
 
                 <div className="gallery-item gallery-item-white rounded-[20px] overflow-hidden">
