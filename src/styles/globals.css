@@ -114,6 +114,7 @@
 body {
   font-family: var(--font-display);
   color: #ffffff;
+  background-color: var(--color-surface);
 }
 
 /*Esconde o scrollbar no Chrome, Safari e Edge */
