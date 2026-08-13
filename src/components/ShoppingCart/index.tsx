@@ -11,8 +11,15 @@ export const ShoppingCart = () => {
 
     return (
         <>
-            <button className="cursor-pointer" onClick={() => setCartIsOpen(!cartIsOpen)}>
-                <img src={IconCart} alt="Ícone de carrinho de compras" />
+            <button
+                className="relative cursor-pointer" onClick={() => setCartIsOpen(!cartIsOpen)}>
+
+                <img src={IconCart} alt="Ícone carrinho de compras" />
+                {cart.length > 0 && (
+                    <span className="absolute -top-3 -right-3 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                        {cart.length}
+                    </span>
+                )}
             </button>
 
             {/* { Overlay} */}
@@ -37,7 +44,7 @@ export const ShoppingCart = () => {
 
                                     <div className="flex flex-col items-start">
                                         <p className="mb-1 text-sm">{product.name}</p>
-                                        <p>Quantidade:{product.quantity}</p>
+                                        <p>Quantidade:{""} {product.quantity}</p>
 
                                         <p className="mb-3.5">
                                             <span className="font-bold mr-1.5">{formatCurrency(product.price)}</span> {" "}
@@ -48,7 +55,7 @@ export const ShoppingCart = () => {
                                                 -
                                             </button>
                                             <p>{product.quantity}</p>
-                                            
+
                                             <button className="cursor-pointer" onClick={() => increment(product)}>
                                                 +
                                             </button>
