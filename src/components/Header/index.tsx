@@ -1,9 +1,20 @@
 import Logo from '@/assets/images/logo.png'
 import IconUser from '@/assets/images/icon-user.png'
 import IconAbout from '@/assets/images/icon-about.png'
-// import IconCart from '@/assets/images/icon-cart.png'
 import { Link } from '@tanstack/react-router'
 import { ShoppingCart } from '../ShoppingCart'
+import { MenuMobile } from '../MenuMobile'
+
+export interface NavLink {
+    name: string;
+    href: string;
+}
+
+const navLinks: NavLink[] = [
+    { name: 'Masculino', href: '/products' },
+    { name: 'Feminino', href: '/products' },
+    { name: 'Outlet', href: '/products' }
+]
 
 export const Header = () => {
     return (
@@ -13,39 +24,43 @@ export const Header = () => {
                     <Link to="/"><img src={Logo} alt="Logo SyntaxWear" className="w-32 md:w-36" />
                     </Link>
 
-                    <nav className="hidden md:block">
+                    <nav className="hidden lg:block">
                         <ul className="flex gap-10">
-                            <li><a href="#">Masculino</a></li>
-                            <li><a href="#">Feminino</a></li>
-                            <li><a href="#">Outlet</a></li>
+                            {navLinks.map((link) => (
+                                <Link to={link.href} key={link.name}>
+                                    {link.name}
+                                </Link>
+                            ))}
                         </ul>
                     </nav>
 
                     <nav>
-                        <ul className="flex gap-4 md:gap-10">
-                            <li className="hidden md:block">
+                        <ul className="flex gap-4 md:gap-10 items-center">
+                            <li className="hidden lg:block">
                                 <Link to="/our-stores">Nossas lojas</Link>
                             </li>
 
-                            <li className="hidden md:block">
+                            <li className="hidden lg:block">
                                 <Link to="/about">Sobre</Link>
                             </li>
 
-                            <li>
+                            <li className="lg:hidden">
+                                <MenuMobile navlinks={navLinks} />
+                            </li>
+
+                            <li className="hidden lg:block">
                                 <Link to="/sign-in">
                                     <img src={IconUser} alt="Ícone de Login" />
                                 </Link>
                             </li>
-                            
-                            <li><a href=""><img src={IconAbout} alt="Ícone de Sobre" /></a>
 
-
+                            <li className="hidden lg:block">
+                                <Link to="/about">
+                                    <img src={IconAbout} alt="Ícone de Sobre" />
+                                </Link>
                             </li>
-                            <li>
-                                {/* <a href="">
-                                    <img src={IconCart} alt="Ícone de Carrinho" />
-                                </a> */}
 
+                            <li>
                                 <ShoppingCart />
                             </li>
                         </ul>
